@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Object-oriented JavaScript example</title>
+  </head>
+
+  <body>
+    <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+
+  </body>
+
+    <script>
+
+     //examples of classless constructor objects 
+      function createNewPerson(name) {
+      const obj = {};
+        obj.name = name;
+        obj.greeting = function() {
+          alert('Hi! I\'m ' + obj.name + '.');
+        };
+        return obj;
+    }
+
+    const salva = createNewPerson('Salva');
+    salva.name;
+    //salva.greeting();
+
+
+    function Person(name) {
+      this.name = name;
+      this.greeting = function() {
+        alert('Hi! I\'m ' + this.name + '.');
+      };
+    }
+
+    let person1 = new Person('Bob');
+    let person2 = new Person('Joe');
+    person1.name;
+    //person1.greeting();
+
+    person2.name;
+    //person2.greeting();
+
+    function Persons(first, last, age, gender, interests) {
+      this.name = {
+        first : first,
+        last : last
+      };
+      this.age = age;
+      this.gender = gender;
+      this.interests = interests;
+      this.bio = function() {
+        alert(this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
+      };
+      this.greeting = function() {
+        alert('Hi! I\'m ' + this.name.first + '.');
+      };
+    }
+
+    let person3 = new Persons('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
+
+    let person4 = new Object();
+    person4.name = 'Chris';
+    person4['age'] = 38;
+    person4.greeting = function() {
+      alert('Hi! I\'m ' + this.name + '.');
+    };
+
+
+    let person5 = new Object({
+      name: 'Chris',
+      age: 38,
+      greeting: function() {
+        alert('Hi! I\'m ' + this.name + '.');
+      }
+    });
+
+    //shallow copy (refrence only, altering one alters the other)
+    let person6 = person5;
+    //deep copy creates an unique object -- USE THIS
+    let person7 = Object.create(person5);
+
+
+    //inheritance
+    function Teacher(first, last, age, gender, interests, subject) {
+      Person.call(this, first, last, age, gender, interests);
+
+      this.subject = subject;
+}
+
+
+// call() is used to create aggrgate object
+// "koosteolio"
+function Brick() {
+this.width = 10;
+this.height = 20;
+this.testi = 111;
+this.hello = function(){conolse.log("brick hello")}
+this.hello2 = function(){conolse.log("brick hello 2")}
+
+}
+
+function BlueGlassBrick() {
+  Brick.call(this);
+  this.color ="Blue";
+  this.testi = 222; //this overrides Brick()
+  //this overrides Brick()hello
+  this.hello = function(){conolse.log("blue brick hello")}
+  this.hello3 = function(){conolse.log("blue brick hello3")}
+
+
+}
+
+let mybrick = new Brick();
+let blueglassbrick = new BlueGlassBrick();
+
+//class
+
+class BrickClass {
+  constructor (width = 10, height = 20, testi = 111){
+      this.width = width;
+      this.height = height;
+      this.testi = testi;
+      this._name = ["",""];
+  }
+
+//getters and setters
+get name() {return this._name[0] + " " + this._name[1];}
+
+set name(newname) {this._name = newname.split(" "); }
+
+
+hello() {console.log("brick hello");}
+hello2() {console.log("brick hello 2");}
+}
+let mybrickobject = new BrickClass();
+
+class BlueGlassBrickClass extends BrickClass {
+constructor() {
+  super();
+  this.opacity = 0.5;
+  this.color = 'blue';
+  this.testi = 222;
+}
+hello() {console.log("bluebrick hello");}
+hello3() {console.log("bluebrick hello 3");}
+}
+
+let myblueglassbrickobj = new BlueGlassBrickClass();
+
+//polymorphism
+// form an array from objects 
+let myarray = [
+  mybrickobject,
+  myblueglassbrickobj
+];
+
+for (let element of myarray) {
+  element.hello();
+  element.hello2();
+}
+
+
+
+    </script>
+</html>

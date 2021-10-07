@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <style>
+            h1 
+                {
+                    color: hotpink;
+                }
+        </style>
+        
+    </head>
+
+        <body>
+            <h1>Header 1</h1>
+            <h3>Header 3</h3>
+            <p>Hello <b>beautiful</b> World!</p>
+            <a href="https://www.kaleva.fi">Kaleva</a>
+            <br>
+            <img src="https://crop.kaleva.fi/cuxoXwtsm_ymTVs4C2JU6_Uxsyg=/850x567/smart/https%3A//lorien-media-prod.s3.amazonaws.com/migration/kalevafi/i/2017/10/02/1199412-r-1f2d2.jpg" 
+            width="10%" height="10%"/>
+            <p style="color: blue; background-color: hotpink;">Blue text</p>
+            <ul>
+                <li>tupu</li>
+                <li>hupu</li>
+                <li>lupu</li>
+            </ul>
+
+            <ol type="I">
+                <li>tupu</li>
+                <li>hupu</li>
+                <li>lupu</li>
+            </ol>
+
+            <table>
+                <tr>
+                    <th>Coffee</th>
+                    <th>Tea</th>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>22</td>
+                </tr>
+            </table>
+      
+            <p id="myElement1">Hillo</p>
+            <p class="myClass">Sininen</p>
+            <p class="myClass">luokka JS</p>
+
+            <div id="myHandler"></div>
+
+            <script>
+                //variable that refers to document and finds the relevant object ID or CLass
+                document.getElementById("myElement1").innerHTML = "kukkuluuruu";
+                document.getElementById("myElement1").style.color = "green";
+                const elementlist = document.getElementsByClassName("myClass");
+                for (let i = 0; i < elementlist.length; i++) {
+                    elementlist[i].style.color = "blue";
+                }
+                    
+                //const myvariable
+                const myvariable = document.getElementById("myHandler");
+                //create p para, append node to it
+                const para = document.createElement("p");
+                const node = document.createTextNode("blah blah...");
+                para.appendChild(node);
+                // append para to myvariable
+                myvariable.appendChild(para);
+                
+            </script>
+
+        </body>
+
+</html>

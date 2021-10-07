@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <script>
+       //JS here is usually used via function calls 
+    </script>
+        <!-- external JS script file -->
+        <script src="JStest1.js"></script>
+        <meta charset="UTF-8">
+</head>
+
+<body>
+  
+    <p ID="demo"></p>
+    <p ID="pi"></p>
+    <script>
+        //date function
+        const d = new Date();
+        console.log(d);
+        //get specific date elements from Date()
+        console.log(d.getHours() +  " hours and " + d.getMinutes() + " minutes. ");
+
+        // document.getElementById("demo").innerHTML = d.toDateString();
+        // document.getElementById("demo").innerHTML = d.toISOString();
+        document.getElementById("demo").innerHTML = d.toLocaleDateString();
+
+        //set a specific value withing Date()
+        const newD = new Date();
+        newD.setMonth(12); //values go from 0 to 11, so 11 is december, 0 is january
+        newD.setDate(25); //date starts from 1
+        console.log(newD);
+
+        //Math while JS isn't a math languag, it still has some useful functions
+        //more complex Math is best to left on other languages like C#
+        let mymath = Math.PI;
+        console.log(Math.PI);
+        document.getElementById("pi").innerHTML = "The value of PI is " + mymath;
+        console.log(Math.trunc(mymath));
+        console.log(Math.round(mymath));
+        //console.log(Math.random(mymath));
+
+        //get a random number in between 1 and 6s
+        let diceRoll = Math.floor(6 * Math.random() +1);
+        console.log("Dice shows: " + diceRoll);
+
+        //better dice roller with min and max
+        let min = 1, max = 6;
+        let diceRoll2 = Math.floor(Math.random() * (max - min + 1)) + min;
+        console.log("min and max dice: " + diceRoll2);
+
+        //booleans true false
+        let decision = true;
+
+        if (decision === true) {
+            console.log("decisions is True");
+        } 
+
+        decision = false;
+
+        //ternary operations
+        //return result based on comparision truthfulness
+        //let x = 111, y = 222;
+        let x = 222, y = 111;
+        
+        let ternaryresult = (x > y) ? "Yes":"No";
+        console.log(ternaryresult);
+        ternaryresult = (decision) ? "Yes":"No";
+        console.log(ternaryresult);
+
+        ///if, if else and else
+        let aaa = 4, bbb= 6, ccc= 8;
+        if (aaa > 3) {
+            console.log("path1");
+        } else if (bbb > 6 && ccc === 8 ){
+            console.log("path2");
+        } else {
+            console.log("Path3");
+        }
+
+        //switch
+        let xxx=4;
+        switch (xxx) {
+            case 1:
+                console.log("1");
+                break;
+            case 2: 
+                console.log("2");
+                break;
+            case 3: 
+            case 4:
+                console.log("3 or 4");
+                break;
+            default: 
+                console.log("someting else");
+                break;
+
+        }
+
+        // looping: for, while
+        let myarray = [11,22,33,44,66,77,88,99];
+        for (let iter=0; iter < myarray.length; iter++){
+            if(myarray[iter] > 33){
+                console.log(iter);
+                break;
+            }
+        }
+
+        // here we iterate every third
+        for (let iter=0; iter < myarray.length; iter+=3){
+            //if(myarray[iter] > 33){
+                console.log(iter);
+            //    break;
+           // }
+        }
+
+        //for whole array
+        for (index in myarray) {
+            console.log("for in gives out " + myarray[index]);
+        }
+
+        for (iter in myarray) {
+           if (myarray[iter] > 22) {
+               console.log ("for gives " +myarray[iter]);
+               break;
+           }
+        }
+
+        //alernative forEach
+
+        myarray.forEach(myfunction);
+        function myfunction(value, index, arrya){
+            console.log("for gives out in for each " + value);
+        }
+
+        //lambda or arrow function
+        myarray.forEach((value, index, array) =>
+        {console.log("for gives out with arrow function " + value);}
+        );
+
+        //for of goes through whole array
+        for (let element of myarray){
+            console.log("for gives out " +element);
+        }
+
+        //while loop
+
+        let i = 0;
+        while (i < 5) {
+            console.log("while: " + i);
+            i++;
+        }
+
+        //do - while, used if you have to do loop at lest once
+
+        let i1 = 0;
+
+        do {
+            console.log("do while: " + i1);
+            i1++;
+            }while (i1 < 5);
+
+        // essentially any list, array or even a string can be iterated
+        // anythign that is a object list can be iterated
+
+        let message = "Tämä on tärkeä viesti";
+        for (let iter of message) {
+            console.log(iter);
+        }
+
+        //set is a grouping of unique values
+
+        let personlist = new Set(["tupu","hupu","lupu"]);
+
+        // ad a new unique element in the set
+        personlist.add("aku"); //this is added as there's no aku in the list
+        personlist.add("tupu"); //this isn't added as it already exists 
+        console.log(personlist.values());
+        console.log(personlist.keys());
+        personlist.delete("aku");
+        console.log(personlist.values());
+
+        for (const element of personlist) {
+            console.log(element);
+        }
+        
+        let personlist2 = new Map([
+        [111,"tupu"],
+        [222,"hupu"],
+        [333,"lupu"]
+        ]);
+
+        personlist2.set(444,"aku"); //ad new unique aku
+        personlist2.set(111,"tupu2"); //repalce the original tupu with tupu2
+
+        for (const element of personlist2) {
+            console.log(element + " key is " + element[0]); //0 position is key
+        }
+
+        //typeof
+
+        //let koe = 123; // return number
+        //let koe ="hello"; //return string
+        let koe = {etunimi: "Tomi", sukunimi: "T"} //return object
+        console.log(typeof koe);
+        if (typeof koe === 'object'){
+            console.log(koe.etunimi); //empty object or an object without etunimi returns undefined
+        }
+
+        //basic anonymous function works as following:
+        let myfunctionvariable = function(){
+            return "this is anonymous function";
+        }
+
+        console.log(myfunctionvariable());
+        //anonymous function can also be done with =>, which is called a lambda function
+        let myfunctionvariable2 = () => {
+            return "this is a lambda function";
+        }
+        console.log(myfunctionvariable2());
+        //if lambda function has only one return line, it can be simplified
+        let myfunctionvariable3 = () =>  "this is a simplified lambda function";
+        console.log(myfunctionvariable3());
+
+        //=> single argument doesn't need ()
+        let mycube1 = x => x**3;
+        console.log(mycube1(3));
+
+    </script>
+
+
+
+<!--just a small little thing-->
+<p>Please input a number between 5 and 10:</p>
+
+<input id="demo1" type="text">
+<button type="button" onclick="myFunction()">Test Input</button>
+<p id="p01"></p>
+
+<script>
+function myFunction() {
+  const message = document.getElementById("p01");
+  message.innerHTML = "";
+  let x = document.getElementById("demo1").value;
+  try {
+    if(x == "") throw "empty";
+    if(isNaN(x)) throw "not a number";
+    x = Number(x);
+    if(x < 5) throw "too low";
+    if(x > 10) throw "too high";
+  }
+  catch(err) {
+    message.innerHTML = "Input is " + err;
+  }
+}
+</script>
+    
+    
+
+</body>
+
+
+
+</htm>

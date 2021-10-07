@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+    
+<head>
+
+
+
+</head>
+
+
+<body>
+
+
+
+
+    <script>
+
+    //an empty object    
+    //const person = {};
+
+    //Object with arrays
+    //accessing cells: person.name[]
+    //person.age
+    //functions person.bio();
+    /*const person = {
+        name: ['Bob', 'Smith'],
+        age: 32,
+        gender: 'male',
+        interests: ['music', 'skiing'],
+        bio: function() {
+            alert(this.name[0] + ' ' + this.name[1] + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
+        },
+        greeting: function() {
+            alert('Hi! I\'m ' + this.name[0] + '.');
+        }
+    };*/
+
+    //object with object as the name
+    //accessing person.name.first
+    //or person.name['first']
+    //deepcopy of an object: let person2 = Object.assign({}, person);
+    //if you do and object person2=person, it's a reference and changes on n affects the other
+    const person = {
+        name : {
+            first: 'Bob',
+            last: 'Smith'
+        },
+        age: 32,
+        gender: 'male',
+        interests: ['music', 'skiing'],
+        bio: function() {
+            alert(this.name[0] + ' ' + this.name[1] + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
+        },
+        greeting: function() {
+            alert('Hi! I\'m ' + this.name[0] + '.');
+        },
+        sayFriend: function(personobject) {alert(personobject.name.first)}
+
+    };
+
+    //refer to another object from object: person.sayFriend(person2)
+
+    const person2 = {
+        name : {
+            first: 'Aku',
+            last: 'ankka',
+            sayNameFriend: function(personobject,parent) {
+                alert(personobject.name.first + ":"+ personobject.age+ ":" + parent.age);
+            }
+        },
+        age: 123,
+        gender: 'male',
+        interests: ['music', 'skiing'],
+        bio: function() {
+            alert(this.name[0] + ' ' + this.name[1] + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
+        },
+        greeting: function() {
+            alert('Hi! I\'m ' + this.name[0] + '.');
+        },
+        sayFriend: function(personobject) {alert(personobject.name.first)}
+    };
+
+    </script>
+
+
+</body>
+
+
+
+</html>

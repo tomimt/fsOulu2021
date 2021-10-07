@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <script>
+       //JS here is usually used via function calls 
+    </script>
+        <!-- external JS script file -->
+        <script src="JStest1.js"></script>
+        <meta charset="UTF-8">
+</head>
+
+<body>
+    <!-- external JS script file -->
+    <script src="JStest2.js"></script>
+
+    <p id="mypara1"></p>
+    <p id="calculation"></p>
+
+    <!--simple button event don't do it like this-->
+    <button onclick="document.getElementById('mypara1').innerHTML = Date()" 
+     onmouseleave="window.alert('you left me')"> Press Me! </button>
+
+    <script>
+        //JS is usually written here
+        //executed AFTER HTML has been displayed
+
+        //tis creates a constant that refers o <p> ID mypara1
+        const mypara1 = document.getElementById("mypara1");
+        const mypara2 = document.getElementById("calculation");
+
+        //now we can manipulate
+
+        mypara1.innerHTML = "changed text";
+
+        //windows alert message
+        //window.alert("this is a message");
+
+        //console log
+        console.log("log message");
+
+        //basic variables
+        //let means normal variables
+        //const means constants reference and needs to be decalred value
+        //var is old term for variable and not really used anymore
+
+        let myvar1 = 1234;
+        let myvar2 = 2222;
+
+        //capital letters matter
+
+        let MYVAR2 = 3333;
+
+        MYVAR2 = myvar1 + myvar2;
+
+        console.log(MYVAR2);
+        mypara2.innerHTML = MYVAR2;
+
+        let myvar3 = 11;
+        let myvar4 = "22";
+
+        let result1 = 11 + myvar3;
+        console.log(result1); //log 22
+
+        let result2 = myvar3 + myvar4;
+        console.log (result2); //log 1122
+
+        console.log("different calculations");
+        myvar5 = 4;
+        console.log(myvar5 ** 3); //means 4*4*4
+        console.log(++myvar5); //incerement before variable causes inceremet, then function call
+        console.log(myvar5++); //incerement after variable causes function call, then increment
+        //lesson learned: ALWAYS increment seperatley from function
+
+        console.log("simple for loop");
+        for (let iter=0; iter < 5; iter++) {
+            console.log(iter);
+        }
+
+        //function calls
+        console.log("These values come from JStest1 functions");
+        console.log(mycube(5));
+        console.log(myarea(5,10));
+
+        console.log("this comes from JStest2 function");
+        mysayhello("Tomi", "T", "Mr");
+
+
+        //objects
+        //object properties are property : value pairs
+        const mycar1 = {type: "Fiat", model: "111", colour:"blue"}
+        mycar1.seats = 5;
+        console.log(mycar1.type);
+        console.log(mycar1.seats);
+
+        //method can be added to objects
+
+        mycar1.information = function () {console.log("Your car is "+ this.type + " " + this.model);};
+
+        mycar1.information();
+
+        //strings
+
+        let mystring1 = "I am 'Fox' O'Brown";
+        let mystring2 = "I am \"Fox\" O\'Brown";
+
+        console.log (mystring1);
+        console.log (mystring2);
+        console.log("string mystring1 is " + mystring1.length + " characters long");
+
+        let mystring3 = "Oulu;HELSINKI,Finland,Europa";
+        myHelsinkiPosition = mystring3.indexOf("HELSINKI");
+        myHelsinkiLenght = "HELSINKI".length;
+        result = mystring3.slice(myHelsinkiPosition,myHelsinkiPosition+myHelsinkiLenght);
+        //let result2 = result[0] + result.slice(1).toLowerCase();
+        console.log(result);
+
+        let firstName ="Aleksis";
+        let lastName ="Kivi";
+        let mystring4 =`This was wrtten by ${firstName} ${lastName}.`;
+        let mystring5 =`${firstName} ${lastName} kirjoitti tämän.`;
+        
+
+        console.log(mystring4);
+        console.log(mystring5);
+
+        //numbers to strigns and vice versa
+
+        let myNumber = 1234;
+        let resultString = myNumber.toString();
+        console.log(resultString);
+
+        let myString = "1234";
+        let resultNumber = Number(myString);
+        console.log(resultNumber);
+
+        //Arrays
+        let myArray = ["a", "b", "c", "d"];
+        console.log(myArray);
+        console.log(myArray[0]);
+        myArray[0] = "Not an A";
+        console.log(myArray[0]);
+
+        myArray.push("e");
+        console.log(myArray);
+
+        myArray.unshift("Eka");
+        console.log(myArray);
+
+        //array iteration
+
+        console.log("for loop");
+        for (iter=0; iter < myArray.length; iter++) {
+            console.log(myArray[iter]);
+        }
+
+        console.log("handler");
+        myArray.forEach(myhandlerfunction);
+        function myhandlerfunction(value, index,array) {
+            console.log(value);
+        }
+
+        console.log("_____________________________________");
+
+        //Creat a new array based on manipulation of old array
+        //mapping function must return some value as a result
+
+        let myArray2 = myArray.map(mymappingfunction);
+        function mymappingfunction(value, index, string) {
+            return index.toString() + "=" + value;
+        }
+        console.log("Brand new Array mapped from the old array");
+        console.log(myArray2);
+
+        //create a new array based of the conditions of the old array
+        //decides how long the array will be
+        //filtering function must return something
+        let myArray3 = myArray.filter(myfilterinfunction);
+        function myfilterinfunction (value, index, array) {
+            //returns all elements with index bigger than 2
+            if (index > 2){
+            return index.toString() + "=" + value;
+            }
+        }
+        console.log("filtered new Array:")
+        console.log(myArray3);
+    </script>
+
+    
+    
+
+</body>
+
+
+
+</htm>

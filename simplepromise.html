@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>My test page</title>
+  </head>
+  <body>
+    <p>This is my promie for coffee </p>
+
+    <script>
+        //fetch the image from a source
+        let promise = fetch('coffee.jpg');
+        //let promise = fetch ('https://raw.githubusercontent.com/mdn/learning-area/master/javascript/asynchronous/promises/coffee.jpg');
+        //create promise blob for the image
+        let promise2 = promise.then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            } else {
+                return response.blob();
+            }
+        });
+
+        //create the img element and display the image in it
+        let promise3 = promise2.then(myBlob => {
+            let objectURL = URL.createObjectURL(myBlob);
+            let image = document.createElement('img');
+            image.src = objectURL;
+            document.body.appendChild(image);
+        });
+
+        //if there is an error, catch it
+        let errorCase = promise3.catch(e => {
+            console.log('There has been a problem with your fetch operation: ' + e.message);
+        });
+
+    </script>
+  </body>
+</html>

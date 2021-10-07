@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Number guessing game</title>
+
+    <style>
+      html {
+        font-family: sans-serif;
+      }
+
+      body {
+        width: 50%;
+        max-width: 800px;
+        min-width: 480px;
+        margin: 0 auto;
+      }
+
+      .lastResult {
+        color: white;
+        padding: 3px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Number guessing game</h1>
+
+    <p>We have selected a random number between 1 and 100. See if you can guess it in 10 turns or fewer. We'll tell you if your guess was too high or too low.</p>
+
+    <div class="form">
+      <label for="guessField">Enter a guess: </label>
+      <input type="text" id="guessField" class="guessField">
+      <input type="submit" value="Submit guess" class="guessSubmit">
+    </div>
+
+    <div class="resultParas">
+      <p class="guesses"></p>
+      <p class="lastResult"></p>
+      <p class="lowOrHi"></p>
+    </div>
+
+    <script>
+        //initialize variables
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+
+        const guesses = document.querySelector('.guesses');
+        const lastResult = document.querySelector('.lastResult');
+        const lowOrHi = document.querySelector('.lowOrHi');
+
+        const guessSubmit = document.querySelector('.guessSubmit');
+        const guessField = document.querySelector('.guessField');
+
+        let guessCount = 1;
+        let resetButton;
+
+        //function for checking the chosen number
+        function checkGuess() {
+            let userGuess = Number(guessField.value);
+            if (guessCount === 1) {
+                guesses.textContent = 'Previous guesses: ';
+            }
+            guesses.textContent += userGuess + ' ';
+
+            //what happens when the player guesses the number
+            //if the guess is right, if 10 guess is up or if the guess is too low or high
+            if (userGuess === randomNumber) {
+                lastResult.textContent = 'Congratulations! You got it right!';
+                lastResult.style.backgroundColor = 'green';
+                lowOrHi.textContent = '';
+                setGameOver();
+            } else if (guessCount === 10) {
+                lastResult.textContent = '!!!GAME OVER!!!';
+                lowOrHi.textContent = '';
+                setGameOver();
+            } else {
+                lastResult.textContent = 'Wrong!';
+                lastResult.style.backgroundColor = 'red';
+                if(userGuess < randomNumber) {
+                lowOrHi.textContent = 'Last guess was too low!';
+                } else if(userGuess > randomNumber) {
+                lowOrHi.textContent = 'Last guess was too high!';
+                }
+            }
+
+            guessCount++;
+            guessField.value = '';
+            guessField.focus();
+            }
+
+           
+
+            //function for what happens when the game is over
+            function setGameOver() {
+                guessField.disabled = true;
+                guessSubmit.disabled = true;
+                resetButton = document.createElement('button');
+                resetButton.textContent = 'Start new game';
+                document.body.append(resetButton);
+                resetButton.addEventListener('click', resetGame);
+            }
+
+            //function for resetting the game
+            function resetGame() {
+                guessCount = 1;
+
+                //select resultparas and everythign under it parent/children
+                const resetParas = document.querySelectorAll('.resultParas p');
+                for (let i = 0 ; i < resetParas.length ; i++) {
+                    resetParas[i].textContent = '';
+                }
+
+                resetButton.parentNode.removeChild(resetButton);
+
+                guessField.disabled = false;
+                guessSubmit.disabled = false;
+                guessField.value = '';
+                guessField.focus();
+
+                lastResult.style.backgroundColor = 'white';
+
+                randomNumber = Math.floor(Math.random() * 100) + 1;
+
+            }
+            //set focus on guess field
+            guessField.focus();
+            //Event listener for presing the guess button
+            guessSubmit.addEventListener('click', checkGuess);
+
+    </script>
+
+    <script>
+        //simple conversion to 1st letter capital, rest of lower
+       /* const list = document.querySelector('.output ul');
+            list.innerHTML = '';
+            let cities = ['lonDon', 'ManCHESTer', 'BiRmiNGHAM', 'liVERpoOL'];
+
+            for (let i = 0; i < cities.length; i++) {
+            let input = cities[i];
+            // write your code just below here
+
+            input = input[0].toUpperCase() + input.slice(1).toLowerCase()
+            
+
+            let result = input;
+            let listItem = document.createElement('li');
+            listItem.textContent = result;
+            list.appendChild(listItem);
+        }
+        
+        const list = document.querySelector('.output ul');
+                list.innerHTML = '';
+                let stations = ['MAN675847583748sjt567654;Manchester Piccadilly',
+                                'GNF576746573fhdg4737dh4;Greenfield',
+                                'LIV5hg65hd737456236dch46dg4;Liverpool Lime Street',
+                                'SYB4f65hf75f736463;Stalybridge',
+                                'HUD5767ghtyfyr4536dh45dg45dg3;Huddersfield'];
+
+                for (let i = 0; i < stations.length; i++) {
+                let input = stations[i];
+                // write your code just below here
+
+                let aaa = input.slice(0,3);
+                let index = input.indexOf(";");
+                let bbb = input.slice(index+1);
+                input = aaa + ": " + bbb;
+
+                let result = input;
+                let listItem = document.createElement('li');
+                listItem.textContent = result;
+                list.appendChild(listItem);
+        }
+
+        
+        */
+    
+    </script>
+  </body>
+</html>

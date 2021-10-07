@@ -1,0 +1,47 @@
+<html>
+    <head>
+
+    </head>
+
+    <body>
+        <script>
+
+        
+        let chosennumbers = new Set();
+        //let mynumbers = new Set ([1,4,5,6,3,8]);
+        let mynumbers = new Set ();
+        
+        //choose the lottery numbers
+        do {
+        let min = 1, max = 40;
+        let lottonumber = Math.floor(Math.random() * (max - min + 1)) + min;
+        chosennumbers.add(lottonumber);
+        } while (chosennumbers.size <7);
+
+        //randomly choose your numbers
+        do {
+        let min = 1, max = 40;
+        let lottonumber = Math.floor(Math.random() * (max - min + 1)) + min;
+        mynumbers.add(lottonumber);
+        } while (mynumbers.size <7);
+
+     /*   for (const element of chosennumbers) {
+            console.log(element); 
+        }*/
+
+        console.log("The lotto numbers: " + [...chosennumbers]);
+        //check the same values
+        let intersection = new Set (
+            [...chosennumbers].filter(x => mynumbers.has(x))
+            
+        )
+        //show the same numbers
+        console.log("Your numbers were: " + [...mynumbers]);
+        console.log("You had: " + [...intersection]);
+
+        </script>
+
+
+    </body>
+
+</html>

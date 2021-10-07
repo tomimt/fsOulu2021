@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+    </head>
+
+    <body>
+        <script>
+            class animal {
+                constructor (weight = 20, species = "doggy"){
+                this.weight = weight;
+                this.species = species;
+                this.describeAnimal = function(){console.log("Animal " + this.species + " weights " + this.weight);}
+            }
+
+        }
+        let myanimal = new animal;
+
+            class cat {
+                constructor (name = "Garfield", age = 40) {
+                    this.name = name;
+                    this.age = age;
+                    this.walks = function(){
+                        console.log("cat " + this.name + " walks")
+                    }
+                }
+
+            }
+
+            class siamese extends cat {
+                constructor(name, age, style = "lazy") {
+                    super(name, age);
+                    this.style = style;
+                    this.walks = function(){
+                        console.log("Siamese cat " + this.name + " walks " + this.style)
+                    }
+                }
+            }
+        let mycat = new cat;
+        let mysiamese = new siamese;
+
+        </script>
+
+    </body>
+</html>
